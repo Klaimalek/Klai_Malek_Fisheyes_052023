@@ -25,10 +25,14 @@ h1 {
 }
 
 .photographer_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
+
+   /* grid-template-columns: 1fr 1fr 1fr;*/
+    
     margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .photographer_section article {
@@ -37,14 +41,39 @@ h1 {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    width: 30%;
+    margin: 10px;
+    padding: 10px;
+
 }
 
 .photographer_section article h2 {
     color: #D3573C;
-    font-size: 36px;
+    font-size: 30px;
 }
 
 .photographer_section article img {
     height: 200px;
     width: 200px;
+    border-radius: 50%;
+    
+}
+.CardPhotographer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    margin-top: -30px;
+}
+.location{
+    color: #901C1C;
+    font-size:15px;
+}
+.tagline{
+
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-weight: 400;
+    font-size: 12px;
 }
