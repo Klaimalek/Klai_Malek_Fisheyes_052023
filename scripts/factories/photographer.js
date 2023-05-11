@@ -17,20 +17,20 @@ function photographerFactory(data) {
         const location = document.createElement('p');
         location.setAttribute("aria-label","locationPhotographer");
         location.setAttribute("class","location");
-        const sentanceTagline = document.createElement('p');
-        sentanceTagline.setAttribute("aria-label","taglinePhotographer");
-        sentanceTagline.setAttribute("class","tagline");
+        const targlinePhotographer = document.createElement("p");
+        targlinePhotographer.setAttribute("aria-label","slogan-photograpger")
+        targlinePhotographer.setAttribute("class","tagline");
         const priceDay = document.createElement('p');
         priceDay.setAttribute("aria-label","price-day-photographer");
         priceDay.setAttribute("class","priceDay");
         h2.textContent = name;
         location .textContent = PhotographerLocation;
-        description.textContent = tagline ;
+        targlinePhotographer.textContent = tagline;
         priceDay. textContent = pricePhotoghrapher;
         article.appendChild(img);
         article.appendChild(h2);
         description.appendChild(location);
-        description.appendChild(sentanceTagline);
+        description.appendChild(targlinePhotographer);
         description.appendChild(priceDay);
         article.appendChild(description);
         return (article);
