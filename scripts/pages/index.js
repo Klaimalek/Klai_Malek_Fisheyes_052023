@@ -10,6 +10,7 @@ async function getPhotographers() {
 }
 //pour afficher les données dans le console
 console.log(getPhotographers());
+
 async function displayData(photographers) {
   const photographersSection = document.querySelector('.photographer_section');
 

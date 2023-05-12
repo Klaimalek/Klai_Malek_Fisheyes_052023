@@ -1,15 +1,24 @@
-/*#contact_modal {
+@import 'variables';
+@import 'mixine';
+
+#namePhotographer{
+    color: $colorName;
+}
+.photograph-header{
+    @include display_row;
+    padding: $padding;
+    align-items: center;
+}
+#contact_modal {
     display: none;
 }
-
 .photograph-header {
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
 }
-
 .imgPhotographerProfil{
-    background-color: #de4827;
+    background-color: $colorName;
     border-radius: 50%;
     box-shadow: 0 0 10px #a39d9d;
     height: 13rem;
@@ -17,8 +26,6 @@
     object-fit: cover;
     width: 13rem;
 }
-
-
 .contact_button {
     font-size: 20px;
     font-weight: bold;
@@ -85,4 +92,4 @@ form input {
     border: none;
     border-radius: 5px;
 }
-*/
+
