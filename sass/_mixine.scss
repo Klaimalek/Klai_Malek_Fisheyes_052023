@@ -10,3 +10,13 @@
     flex-direction: row;
     justify-content: space-between;
 }
+@mixin locationPhotographer{
+    font-weight: 400;
+    font-size: 24px;
+    color: $colorLoacation
+}
+@mixin taglinePhotographer{
+    
+    font-weight: 400;
+    font-size: 18px;
+}

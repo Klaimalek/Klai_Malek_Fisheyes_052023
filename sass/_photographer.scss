@@ -9,13 +9,25 @@
     padding: $padding;
     align-items: center;
 }
+.locationProfil{
+    @include locationPhotographer;
+}
+.taglineProfil{
+    @include taglinePhotographer;
+}
+.infoProfilPhotographer{
+    @include display_column;
+    justify-content: center;
+    margin: 1em 0;
+}
 #contact_modal {
     display: none;
 }
 .photograph-header {
     background-color: #FAFAFA;
-    height: 300px;
+    height: 250px;
     margin: 0 100px;
+    border-radius: 5px;
 }
 .imgPhotographerProfil{
     background-color: $colorName;
