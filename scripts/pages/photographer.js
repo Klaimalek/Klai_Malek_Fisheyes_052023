@@ -59,7 +59,7 @@ function setMedia(media) {
   listMedia = document.querySelectorAll("#profil__media li");
 }
  
-
+// création de l'article media html
 function mediaFactory(data) {
   let type = data.video ? "video" : "image";
 
@@ -79,7 +79,8 @@ function mediaFactory(data) {
                 </a>
                 <div class="infoMedia">
                   <h3 class= "titleMedia">${data.title}</h3>
-                 
+                 <div class="favorite"> ${data.likes}</div>
+
                 </div>
               </article>
             `;
