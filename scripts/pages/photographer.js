@@ -1,6 +1,6 @@
 
 const galleryMedia = document.querySelector("#profil__media");
-
+const blocMediaInfo = document.querySelector("#bloc_info");
 //récupérer l'ID du photographe pour charger les données des photographers
 
 function urlGetParams(url) {
@@ -33,6 +33,7 @@ function urlGetParams(url) {
   function setDataElement(photographer,media) {
     setProfilPhotgrapher(photographer);
      setMedia(media);
+    
   }
   //Mettre info dans la presentation du photographe
 function  setProfilPhotgrapher(photographer) {
@@ -56,10 +57,10 @@ function setMedia(media) {
     let article = media.getCardMedia();
     galleryMedia.innerHTML += article;
   });
-  listMedia = document.querySelectorAll("#profil__media li");
+  //listMedia = document.querySelectorAll("#profil__media li");
 }
  
-// création de l'article media html
+// création de l'article media 
 function mediaFactory(data) {
   let type = data.video ? "video" : "image";
 
@@ -89,6 +90,6 @@ function mediaFactory(data) {
   return { type, getCardMedia}; 
 }
 
-
+//mettre les données dans le bloc rouge
 
 
