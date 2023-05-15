@@ -1,6 +1,6 @@
 
 const galleryMedia = document.querySelector("#profil__media");
-const blocMediaInfo = document.querySelector("#bloc_info");
+const blocSummery = document.querySelector('#summery');
 //récupérer l'ID du photographe pour charger les données des photographers
 
 function urlGetParams(url) {
@@ -13,7 +13,7 @@ function urlGetParams(url) {
   
   const informationPhotographer = document.querySelectorAll('photograph-header');
   
-  //obtenir les données
+  //récupération des données
   async function setDataProfil() {
     let response = await fetch("../data/photographers.json");
     if (!response.ok) {
@@ -29,11 +29,12 @@ function urlGetParams(url) {
     console.log(media);
   }
   setDataProfil();
+
   // display les données poor le photographer et media
   function setDataElement(photographer,media) {
     setProfilPhotgrapher(photographer);
-     setMedia(media);
-    
+    setMedia(media);
+    setSummeryGphotographer(photographer)
   }
   //Mettre info dans la presentation du photographe
 function  setProfilPhotgrapher(photographer) {
@@ -57,7 +58,6 @@ function setMedia(media) {
     let article = media.getCardMedia();
     galleryMedia.innerHTML += article;
   });
-  //listMedia = document.querySelectorAll("#profil__media li");
 }
  
 // création de l'article media 
@@ -92,4 +92,21 @@ function mediaFactory(data) {
 
 //mettre les données dans le bloc rouge
 
+function setSummeryGphotographer(media){
 
+    let medias = summeryFactory();
+    let div = medias.getCardBloc();
+    blocSummery.innerHTML += div;
+  
+}
+
+function summeryFactory(data) {
+  function getCardBloc() {
+   
+    const divMedia = `
+              <div class="inf1"> malek</div>
+            `;
+    return divMedia;
+  }
+  return { getCardBloc}; 
+}
