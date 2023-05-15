@@ -60,6 +60,7 @@
 }
 .img_Media{
     @include styleImgVideo;
+    
   
 }
 .video_Media{
@@ -67,6 +68,13 @@
 }
 .media{
     width: 30%;
+    margin-bottom: 20px;
+}
+
+.infoMedia{
+    @include display_row;
+    color: $colorLoacation;
+    
 }
 .modal {
     border-radius: 5px;

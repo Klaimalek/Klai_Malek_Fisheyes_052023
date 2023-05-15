@@ -104,7 +104,7 @@ function summeryFactory(data) {
   function getCardBloc() {
    
     const divMedia = `
-              <div class="inf1"> malek</div>
+              <div class="pricePhotographer"> ${data.price}</div>
             `;
     return divMedia;
   }
