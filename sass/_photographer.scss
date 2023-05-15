@@ -1,5 +1,6 @@
 @import 'variables';
 @import 'mixine';
+@import 'utils';
 
 #namePhotographer{
     color: $colorName;
@@ -50,7 +51,23 @@
     border-radius: 5px;
     cursor: pointer;
 }
-
+// style pour las ection media
+.section_media{
+    padding-top: 30px;
+    @include display_row;
+    margin-left: $margin;
+    margin-right: $margin;
+}
+.img_Media{
+    @include styleImgVideo;
+  
+}
+.video_Media{
+    @include styleImgVideo;
+}
+.media{
+    width: 30%;
+}
 .modal {
     border-radius: 5px;
     background-color: #DB8876;

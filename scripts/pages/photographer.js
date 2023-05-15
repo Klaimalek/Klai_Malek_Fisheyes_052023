@@ -1,5 +1,5 @@
 
-const profilMedia = document.querySelector("#profil__media");
+const galleryMedia = document.querySelector("#profil__media");
 
 //récupérer l'ID du photographe pour charger les données des photographers
 
@@ -12,7 +12,7 @@ function urlGetParams(url) {
    
   
   const informationPhotographer = document.querySelectorAll('photograph-header');
-  const galleryMedia = document.querySelectorAll('photographerMedia');
+  
   //obtenir les données
   async function setDataProfil() {
     let response = await fetch("../data/photographers.json");
@@ -29,7 +29,7 @@ function urlGetParams(url) {
     console.log(media);
   }
   setDataProfil();
-  // display les données poue le photographer
+  // display les données poor le photographer et media
   function setDataElement(photographer,media) {
     setProfilPhotgrapher(photographer);
      setMedia(media);
@@ -48,11 +48,13 @@ function  setProfilPhotgrapher(photographer) {
   ).src = `assets/photographers/${photographer.portrait}`;
 }
 
+// display les medias
+
 function setMedia(media) {
   media.forEach((element) => {
     let media = mediaFactory(element);
-    let li = media.createElement();
-    profilMedia.innerHTML += li;
+    let article = media.getCardMedia();
+    galleryMedia.innerHTML += article;
   });
   listMedia = document.querySelectorAll("#profil__media li");
 }
@@ -61,35 +63,31 @@ function setMedia(media) {
 function mediaFactory(data) {
   let type = data.video ? "video" : "image";
 
-  function createElement() {
+  function getCardMedia() {
     let element;
     if (type == "image") {
-      element = `<img src=assets/media/${data.photographerId}/${data.image} alt="${data.title}" data-id=${data.id}></img>`;
+      element = `<img class="img_Media" src=assets/media/${data.photographerId}/${data.image} alt="${data.title}" data-id=${data.id}></img>`;
     } else if (type == "video") {
-      element = `<video src=assets/media/${data.photographerId}/${data.video}#t=0.1 alt="${data.title}" data-id=${data.id} preload="metadata"></video>`;
-      //#t=0.1 et preload="metadata" pour que l'image de la video s'affiche sur safari
+      element = `<video class="video_Media" src=assets/media/${data.photographerId}/${data.video}#t=0.1 alt="${data.title}" data-id=${data.id} preload="metadata"></video>`;
+      
     }
 
-    const li = `
-              <li class="media" data-date=${data.date} data-likes=${data.likes} data-title=${data.title}>
+    const articleMedia = `
+              <article class="media" >
                 <a href="#" class="media__link" >
                   ${element}
                 </a>
-                <div class="media__info">
-                  <p>${data.title}</p>
-                  <button class="like" >
-                    <p>${data.likes}</p>
-                    <img src="assets/icons/heart-vide.svg" id="coeurVide" alt="coeur-vide"/> 
-                    <img src="assets/icons/heart.svg" id="coeur" alt="coeur"/>   
-                  </button>
+                <div class="infoMedia">
+                  <h3 class= "titleMedia">${data.title}</h3>
+                 
                 </div>
-              </li>
+              </article>
             `;
-    return li;
+    return articleMedia;
   }
-  return { type, createElement };
+  return { type, getCardMedia}; 
 }
 
-console.log("ok");
+
 
 
