@@ -34,7 +34,7 @@ function urlGetParams(url) {
   function setDataElement(photographer,media) {
     setProfilPhotgrapher(photographer);
     setMedia(media);
-    setSummeryGphotographer(photographer)
+    setSummeryGphotographer(photographer);
   }
   //Mettre info dans la presentation du photographe
 function  setProfilPhotgrapher(photographer) {
@@ -92,7 +92,7 @@ function mediaFactory(data) {
 
 //mettre les données dans le bloc rouge
 
-function setSummeryGphotographer(media){
+function setSummeryGphotographer(photographer,media){
 
     let medias = summeryFactory();
     let div = medias.getCardBloc();
@@ -101,12 +101,14 @@ function setSummeryGphotographer(media){
 }
 
 function summeryFactory(data) {
+  
   function getCardBloc() {
    
     const divMedia = `
-              <div class="pricePhotographer"> ${data.price}</div>
+              <div class="pricePhotographer"> €/ jour</div>
             `;
     return divMedia;
   }
   return { getCardBloc}; 
 }
+
