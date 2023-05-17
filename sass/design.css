@@ -192,13 +192,18 @@ body {
 .Bloc_red {
   background-color: #DB8876;
   width: 376px;
-  height: 89px;
+  height: 70px;
   border-radius: 5px;
   position: fixed;
   bottom: 0;
   right: 40px;
   color: black;
   padding: 15px 20px;
+}
+
+.pricePhotographer {
+  position: absolute;
+  right: 30px;
 }
 
 body {
