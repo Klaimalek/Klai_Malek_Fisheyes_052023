@@ -40,10 +40,38 @@
           <h2>Contactez-moi</h2>
           <img src="assets/icons/close.svg" alt="“Contact Me”" onclick="closeModal()" />
         </header>
-				<form>
-					<div>
+				<form
+              name="reserve"
+              action="photographer.html"
+              method="get"
+        >
+					<div class="formData">
 						<label>Prénom</label>
-						<input />
+						<input class="text-control"
+                   type="text"
+                   id="first"
+                   name="first" />
+					</div>
+          <div class="formData">
+						<label>Nom</label>
+						<input class="text-control"
+                   type="text"
+                   id="lastName"
+                   name="last" />
+					</div>
+          <div class="formData">
+						<label>Email</label>
+						<input class="text-control"
+                   type="email"
+                   id="mail"
+                   name="email" />
+					</div>
+          <div class="formData">
+						<label>Votre message</label>
+						<input class="text-control"
+                   type="text"
+                   id="comment"
+                   name="cmt" />
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
