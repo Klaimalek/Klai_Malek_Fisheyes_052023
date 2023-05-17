@@ -1,52 +1,52 @@
-
-const galleryMedia = document.querySelector("#profil__media");
+const galleryMedia = document.querySelector('#profil__media');
 const blocSummery = document.querySelector('#summery');
 //récupérer l'ID du photographe pour charger les données des photographers
 
 function urlGetParams(url) {
-    let resultat = url.search;
-    return resultat.substring(4);
-  }
-  const idPhotoghrapher = urlGetParams(document.location);
-  console.log(idPhotoghrapher);
-   
-  
-  const informationPhotographer = document.querySelectorAll('photograph-header');
-  
-  //récupération des données
-  async function setDataProfil() {
-    let response = await fetch("../data/photographers.json");
-    if (!response.ok) {
-      return "error";
-    }
-    let data = await response.json();
-  
-    let photographer = data.photographers.find((element) => element.id == idPhotoghrapher);
-    let media = data.media.filter((m) => m.photographerId == idPhotoghrapher);
-  
-    setDataElement(photographer,media);
+  let resultat = url.search;
+  return resultat.substring(4);
+}
+const idPhotoghrapher = urlGetParams(document.location);
+console.log(idPhotoghrapher);
 
-    console.log(media);
-  }
-  setDataProfil();
+const informationPhotographer = document.querySelectorAll('photograph-header');
 
-  // display les données poor le photographer et media
-  function setDataElement(photographer,media) {
-    setProfilPhotgrapher(photographer);
-    setMedia(media);
-    setSummeryGphotographer(photographer);
+//récupération des données
+async function setDataProfil() {
+  let response = await fetch('../data/photographers.json');
+  if (!response.ok) {
+    return 'error';
   }
-  //Mettre info dans la presentation du photographe
-function  setProfilPhotgrapher(photographer) {
+  let data = await response.json();
 
-  document.getElementById("namePhotographer").innerText = photographer.name;
+  let photographer = data.photographers.find(
+    (element) => element.id == idPhotoghrapher
+  );
+  let media = data.media.filter((m) => m.photographerId == idPhotoghrapher);
+
+  setDataElement(photographer, media);
+
+  console.log(media);
+}
+setDataProfil();
+
+// display les données poor le photographer et media
+function setDataElement(photographer, media) {
+  setProfilPhotgrapher(photographer);
+  setMedia(media);
+  setSummeryGphotographer(photographer, media);
+}
+//Mettre info dans la presentation du photographe
+function setProfilPhotgrapher(photographer) {
+  document.getElementById('namePhotographer').innerText = photographer.name;
   document.getElementById(
-    "photohrapherLocation"
+    'photohrapherLocation'
   ).innerText = `${photographer.city}, ${photographer.country}`;
-  document.getElementById("photographerTagligne").innerText = photographer.tagline;
+  document.getElementById('photographerTagligne').innerText =
+    photographer.tagline;
 
   document.getElementById(
-    "photographerImg"
+    'photographerImg'
   ).src = `assets/photographers/${photographer.portrait}`;
 }
 
@@ -59,18 +59,17 @@ function setMedia(media) {
     galleryMedia.innerHTML += article;
   });
 }
- 
-// création de l'article media 
+
+// création de l'article media
 function mediaFactory(data) {
-  let type = data.video ? "video" : "image";
+  let type = data.video ? 'video' : 'image';
 
   function getCardMedia() {
     let element;
-    if (type == "image") {
+    if (type == 'image') {
       element = `<img class="img_Media" src=assets/media/${data.photographerId}/${data.image} alt="${data.title}" data-id=${data.id}></img>`;
-    } else if (type == "video") {
+    } else if (type == 'video') {
       element = `<video class="video_Media" src=assets/media/${data.photographerId}/${data.video}#t=0.1 alt="${data.title}" data-id=${data.id} preload="metadata"></video>`;
-      
     }
 
     const articleMedia = `
@@ -87,28 +86,25 @@ function mediaFactory(data) {
             `;
     return articleMedia;
   }
-  return { type, getCardMedia}; 
+  return { type, getCardMedia };
 }
 
 //mettre les données dans le bloc rouge
 
-function setSummeryGphotographer(photographer,media){
-
-    let medias = summeryFactory();
-    let div = medias.getCardBloc();
-    blocSummery.innerHTML += div;
-  
+function setSummeryGphotographer(photographer, media) {
+  let medias = summeryFactory(photographer);
+  let div = medias.getCardBloc(photographer);
+  blocSummery.innerHTML += div;
 }
 
-function summeryFactory(data) {
-  
-  function getCardBloc() {
-   
-    const divMedia = `
-              <div class="pricePhotographer"> €/ jour</div>
-            `;
-    return divMedia;
-  }
-  return { getCardBloc}; 
+function summeryFactory(photographer) {
+  getCardBloc(photographer);
+  return { getCardBloc };
 }
 
+function getCardBloc(photographer) {
+  const blocPhotographer = `
+            <div class="pricePhotographer"> ${photographer.price} €/ jour</div>
+          `;
+  return blocPhotographer;
+}
