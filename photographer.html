@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <link href="sass/design.css" rel="stylesheet" type="text/css" />
+    
+    <link href="sass/design.css" rel="stylesheet"  />
     <meta charset="utf-8">
     <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+      integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
   </head>
@@ -28,7 +34,6 @@
           <img src="#" class="imgPhotographerProfil" id="photographerImg" alt="Mimi Keel" />
         </div>
       </div>
-      
       <div id="profil__media" class="section_media">
       </div>
       <div id="summery" class="Bloc_red">
@@ -50,8 +55,11 @@
 						<input class="text-control"
                    type="text"
                    id="first"
-                   name="first" />
+                   name="firstname" />
 					</div>
+          <p class="error" id="errorLastname">
+            Veuillez entrer 4 caractères ou plus pour le champ du prénom.
+          </p>
           <div class="formData">
 						<label>Nom</label>
 						<input class="text-control"
@@ -77,6 +85,7 @@
 				</form>
 			</div>
 		</div>
+    <script src="scripts/factories/media.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>

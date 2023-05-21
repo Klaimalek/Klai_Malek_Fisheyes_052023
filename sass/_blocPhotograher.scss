@@ -1,3 +1,4 @@
+@import 'mixine';
 .Bloc_red{
     background-color: $backgroundBlock;
     width: 376px;
@@ -8,8 +9,20 @@
     right: 40px;
     color: black;
     padding: 15px 20px;
+    font-weight: bold;
+    font-size: 20px;
+    @include display_row;
+    justify-content: space-between;
+    padding: auto;
+  
+}
+
+.totalLikes{
+   padding-left: 25px;
+    width: 35%;
 }
 .pricePhotographer{
+    width: 35%;
     position: absolute;
     right: 30px ;
 }

@@ -1,3 +1,4 @@
+
 const galleryMedia = document.querySelector('#profil__media');
 const blocSummery = document.querySelector('#summery');
 //récupérer l'ID du photographe pour charger les données des photographers
@@ -60,34 +61,6 @@ function setMedia(media) {
   });
 }
 
-// création de l'article media
-function mediaFactory(data) {
-  let type = data.video ? 'video' : 'image';
-
-  function getCardMedia() {
-    let element;
-    if (type == 'image') {
-      element = `<img class="img_Media" src=assets/media/${data.photographerId}/${data.image} alt="${data.title}" data-id=${data.id}></img>`;
-    } else if (type == 'video') {
-      element = `<video class="video_Media" src=assets/media/${data.photographerId}/${data.video}#t=0.1 alt="${data.title}" data-id=${data.id} preload="metadata"></video>`;
-    }
-
-    const articleMedia = `
-              <article class="media" >
-                <a href="#" class="media__link" >
-                  ${element}
-                </a>
-                <div class="infoMedia">
-                  <h3 class= "titleMedia">${data.title}</h3>
-                 <div class="favorite"> ${data.likes}</div>
-
-                </div>
-              </article>
-            `;
-    return articleMedia;
-  }
-  return { type, getCardMedia };
-}
 
 //mettre les données dans le bloc rouge
 
@@ -103,8 +76,24 @@ function summeryFactory(photographer) {
 }
 
 function getCardBloc(photographer) {
+  const totalLike = document.querySelectorAll(".favorite");
+  let totalLikeCount = 0;
+  console.log(totalLike);
+  totalLike.forEach((media)=>{
+    totalLikeCount += Number(media.textContent);
+  })
+  console.log(totalLikeCount);
   const blocPhotographer = `
             <div class="pricePhotographer"> ${photographer.price} €/ jour</div>
+            <div class="totalLikes"> ${totalLikeCount} 
+            <i class="fa-sharp fa-solid fa-heart"></i>
+            </div>
+            
           `;
+            
+           
   return blocPhotographer;
+}
+function sumTotalLikes(photographer){
+ 
 }

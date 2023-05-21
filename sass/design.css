@@ -145,9 +145,23 @@ body {
   right: 40px;
   color: black;
   padding: 15px 20px;
+  font-weight: bold;
+  font-size: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  justify-content: space-between;
+  padding: auto;
+}
+
+.totalLikes {
+  padding-left: 25px;
+  width: 35%;
 }
 
 .pricePhotographer {
+  width: 35%;
   position: absolute;
   right: 30px;
 }
@@ -214,6 +228,12 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+.error {
+  color: white;
+  font-size: 18px;
+  display: none;
 }
 
 body {
