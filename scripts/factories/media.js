@@ -18,12 +18,23 @@
                   </a>
                   <div class="infoMedia">
                     <h3 class= "titleMedia">${data.title}</h3>
-                   <div class="favorite"> ${data.likes}</div>
-  
+                    <button class="favorite" onclick ="incrementLikes(this)"> ${data.likes}
+                    <i class="fa-regular fa-heart" id ="malek"  aria-label="likes"></i>
+                   </button>
                   </div>
                 </article>
               `;
       return articleMedia;
     }
+
+   
     return { type, getCardMedia };
   }
+
+  // -----------------fonction incrémentation de likes----------
+
+ function incrementLikes(){
+  
+  
+ }
+

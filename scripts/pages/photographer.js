@@ -94,6 +94,3 @@ function getCardBloc(photographer) {
            
   return blocPhotographer;
 }
-function sumTotalLikes(photographer){
- 
-}
