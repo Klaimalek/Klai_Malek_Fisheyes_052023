@@ -18,8 +18,9 @@
                   </a>
                   <div class="infoMedia">
                     <h3 class= "titleMedia">${data.title}</h3>
-                    <button class="favorite" onclick ="incrementLikes(this)"> ${data.likes}
-                    <i class="fa-regular fa-heart" id ="malek"  aria-label="likes"></i>
+                    <button class="favorite"  onclick="incrementLikes(this)"> ${data.likes}
+                    <i class="fa-regular fa-heart" id="heart-vide" aria-label="likes"></i>
+                    <i class="fa-solid fa-heart" id="heart" aria-label="likes"></i>
                    </button>
                   </div>
                 </article>
@@ -33,8 +34,13 @@
 
   // -----------------fonction incrémentation de likes----------
 
- function incrementLikes(){
-  
+ function incrementLikes(event){
+  let allLikes = 0;
+  let classList = event.classList;
+  let favoriteContainer = classList.contains("favorite") ? event : event.parentNode;
+  let likeNumber =favoriteContainer.firstElementChild;
+  let like = document.getElementById("heart");
+  let dislike = document.getElementById("heart-vide");
   
  }
 

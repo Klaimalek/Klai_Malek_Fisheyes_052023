@@ -1,4 +1,4 @@
-
+@import "photographer.css";
 * {
   box-sizing: border-box;
   margin: 0;
@@ -126,6 +126,10 @@ body {
   color: #901C1C;
   padding-right: 10px;
   padding-top: 10px;
+}
+
+#heart {
+  display: none;
 }
 
 * {
