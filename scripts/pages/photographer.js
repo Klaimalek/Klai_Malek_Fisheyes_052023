@@ -8,7 +8,7 @@ function urlGetParams(url) {
   return resultat.substring(4);
 }
 const idPhotoghrapher = urlGetParams(document.location);
-console.log(idPhotoghrapher);
+//console.log(idPhotoghrapher);
 
 const informationPhotographer = document.querySelectorAll('photograph-header');
 
@@ -27,7 +27,7 @@ async function setDataProfil() {
 
   setDataElement(photographer, media);
 
-  console.log(media);
+  //console.log(media);
 }
 setDataProfil();
 
@@ -78,11 +78,11 @@ function summeryFactory(photographer) {
 function getCardBloc(photographer) {
   const totalLike = document.querySelectorAll(".favorite");
   let totalLikeCount = 0;
-  console.log(totalLike);
+  //console.log(totalLike);
   totalLike.forEach((media)=>{
     totalLikeCount += Number(media.textContent);
   })
-  console.log(totalLikeCount);
+  //console.log(totalLikeCount);
   const blocPhotographer = `
             <div class="pricePhotographer"> ${photographer.price} €/ jour</div>
             <div class="totalLikes"> ${totalLikeCount} 

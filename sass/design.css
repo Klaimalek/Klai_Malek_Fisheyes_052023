@@ -129,7 +129,36 @@ body {
 }
 
 #heart {
-  display: none;
+  visibility: hidden;
+}
+
+.favorite {
+  cursor: pointer;
+  width: 70px;
+  color: #901C1C;
+  font-size: 1.17rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+  border: none;
+}
+
+.liked {
+  border: none;
+}
+
+.number {
+  pointer-events: none;
+}
+
+.fa-solid {
+  padding-left: -20px;
+  padding-right: -30px;
+}
+
+.fa-regular {
+  padding-left: 25px;
 }
 
 * {
