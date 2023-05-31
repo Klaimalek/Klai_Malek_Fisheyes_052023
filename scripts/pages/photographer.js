@@ -1,19 +1,24 @@
+( async function main() {
+ await setDataProfil();
+  manageLikes();
+})();
 
-const galleryMedia = document.querySelector('#profil__media');
-const blocSummery = document.querySelector('#summery');
+//const galleryMedia = document.querySelector('#profil__media');
+//const blocSummery = document.querySelector('#summery');
 //récupérer l'ID du photographe pour charger les données des photographers
 
 function urlGetParams(url) {
   let resultat = url.search;
   return resultat.substring(4);
 }
-const idPhotoghrapher = urlGetParams(document.location);
+//const idPhotoghrapher = urlGetParams(document.location);
 //console.log(idPhotoghrapher);
 
-const informationPhotographer = document.querySelectorAll('photograph-header');
+//const informationPhotographer = document.querySelectorAll('photograph-header');
 
 //récupération des données
 async function setDataProfil() {
+  const idPhotoghrapher = urlGetParams(document.location);
   let response = await fetch('../data/photographers.json');
   if (!response.ok) {
     return 'error';
@@ -29,7 +34,7 @@ async function setDataProfil() {
 
   //console.log(media);
 }
-setDataProfil();
+//setDataProfil();
 
 // display les données poor le photographer et media
 function setDataElement(photographer, media) {
@@ -54,6 +59,7 @@ function setProfilPhotgrapher(photographer) {
 // display les medias
 
 function setMedia(media) {
+  const galleryMedia = document.querySelector('#profil__media');
   media.forEach((element) => {
     let media = mediaFactory(element);
     let article = media.getCardMedia();
@@ -61,10 +67,10 @@ function setMedia(media) {
   });
 }
 
-
 //mettre les données dans le bloc rouge
 
 function setSummeryGphotographer(photographer, media) {
+  const blocSummery = document.querySelector('#summery');
   let medias = summeryFactory(photographer);
   let div = medias.getCardBloc(photographer);
   blocSummery.innerHTML += div;
@@ -76,12 +82,12 @@ function summeryFactory(photographer) {
 }
 
 function getCardBloc(photographer) {
-  const totalLike = document.querySelectorAll(".favorite");
+  const totalLike = document.querySelectorAll('.favorite');
   let totalLikeCount = 0;
   //console.log(totalLike);
-  totalLike.forEach((media)=>{
+  totalLike.forEach((media) => {
     totalLikeCount += Number(media.textContent);
-  })
+  });
   //console.log(totalLikeCount);
   const blocPhotographer = `
             <div class="pricePhotographer"> ${photographer.price} €/ jour</div>
@@ -90,7 +96,39 @@ function getCardBloc(photographer) {
             </div>
             
           `;
-            
-           
+
   return blocPhotographer;
 }
+
+function manageLikes() {
+  const btnLikes = document.getElementsByClassName("favorite");
+  console.log(btnLikes);
+  for (let btnLike of btnLikes)
+  {
+    btnLike.addEventListener("click",incrementLike)
+  }
+  
+}
+ function incrementLike(event) {
+  let parentElement = event.target.parentNode;
+  let likeElement = parentElement.firstElementChild;
+  let likeNumber = parseInt(likeElement.textContent);
+  let HeartEmpty = likeElement.nextElementSibling;
+  let HeartNotEmpty = HeartEmpty.nextElementSibling;
+  
+  if (parentElement.classList.contains('liked')) {
+    likeNumber -= 1;
+    likeElement.innerText = likeNumber;
+    console.log(likeNumber -= 1);
+  }
+   else {
+    likeNumber += 1;
+    likeElement.innerText = likeNumber;
+  }
+  parentElement.classList.toggle('liked');
+  
+}
+
+
+  // récupération de nobre total par id et ajouter +1
+ 

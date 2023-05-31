@@ -1,26 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    
-    <link href="sass/design.css" rel="stylesheet"  />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="sass/design.css" rel="stylesheet" />
+
+    <link href="sass/_photographer.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
       integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
       crossorigin="anonymous"
-      referrerpolicy="no-referrer">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
+      referrerpolicy="no-referrer"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <title>Fisheye - photographe</title>
   </head>
   <body>
-    <header role = "banner">
-      <a href="index.html"><img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
+    <header role="banner">
+      <a href="index.html"
+        ><img
+          src="assets/images/logo.png"
+          class="logo"
+          alt="Fisheye Home page"
+        />
       </a>
     </header>
-    <main id="main" aria-hidden="false" >
-      <div class="photograph-header">
+    <main id="main" aria-hidden="false">
+      <section class="photograph-header">
         <div class="photographerProfil">
           <h1 id="namePhotographer"></h1>
           <div class="infoProfilPhotographer">
@@ -28,63 +38,102 @@
             <p id="photographerTagligne" class="taglineProfil"></p>
           </div>
         </div>
-        <button class="contact_button" onclick="launchModal()" aria-label="Contact Me">Contactez-moi 
+        <button
+          class="contact_button"
+          onclick="launchModal()"
+          aria-label="Contact Me"
+        >
+          Contactez-moi
         </button>
         <div class="imgProfil">
-          <img src="#" class="imgPhotographerProfil" id="photographerImg" alt="Mimi Keel" />
+          <img
+            src="#"
+            class="imgPhotographerProfil"
+            id="photographerImg"
+            alt="Mimi Keel"
+          />
+        </div>
+      </section>
+      <!--
+ <div class="tri">
+        <label for="filter" class="tri-title">Trier par : </label>
+        <div class ="liste-tri">
+          <button class="btn-sort" aria-haspopup="listbox">Popularité</button>
+          <ul class="hidden-list" role="listbox">
+            <li class="elt-list" role="option" aria-selected="true">
+              Popularité
+              <span class="fas fa-chevron-up arrow-up-close"></span>
+            </li>
+            <li aria-selected="false" class="elt-list" role="option">Date</li>
+            <li aria-selected="false" class="elt-list" role="option">Tître</li>
+          </ul>
         </div>
       </div>
-      <div id="profil__media" class="section_media">
-      </div>
-      <div id="summery" class="Bloc_red">
-      </div>
+      -->
+      <section class = "section-tri">
+        <div class="dropdown">
+          <h2 class="dropdown-title">Trier Par </h2>
+          <input class="dropdown-value" type="hidden" role="button" aria-label="Trier par" aria-haspopup="lisbox" aria-expanded="true" tabindex="0">
+          <div class="dropdown-input" >
+            <input type="text" readonly value="Popularité">
+            <em class="dropdown__chevron fas fa-chevron-down"></em>
+          </div>
+          <div class="dropdown-round">
+            <ul>
+              <li id="Popularite" data-value="value1" role="listbox" aria-selected="" aria-label="Trier par Popularité">Popularité</li>
+              <li id="Date" data-value="value2" role="listbox" aria-selected="" aria-label="Trier par Date">Date</li>
+              <li id="Titre" data-value="value3" role="listbox" aria-selected="" aria-label="Trier par Titre">Titre</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="profil__media" class="section_media"></section>
+      <div id="summery" class="Bloc_red"></div>
     </main>
-    <div id="contact_modal" aria-hidden="true" role ="dialog" aria-describedby="modalContact" >
-			<div class="modal" >
-				<header>
+    <div
+      id="contact_modal"
+      aria-hidden="true"
+      role="dialog"
+      aria-describedby="modalContact"
+    >
+      <div class="modal">
+        <header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="“Contact Me”" onclick="closeModal()" />
+          <img
+            src="assets/icons/close.svg"
+            alt="“Contact Me”"
+            onclick="closeModal()"
+          />
         </header>
-				<form
-              name="reserve"
-              action="photographer.html"
-              method="get"
-        >
-					<div class="formData">
-						<label>Prénom</label>
-						<input class="text-control"
-                   type="text"
-                   id="first"
-                   name="firstname" />
-					</div>
+        <form name="reserve" action="photographer.html" method="get">
+          <div class="formData">
+            <label>Prénom</label>
+            <input
+              class="text-control"
+              type="text"
+              id="first"
+              name="firstname"
+            />
+          </div>
           <p class="error" id="errorLastname">
             Veuillez entrer 4 caractères ou plus pour le champ du prénom.
           </p>
           <div class="formData">
-						<label>Nom</label>
-						<input class="text-control"
-                   type="text"
-                   id="lastName"
-                   name="last" />
-					</div>
+            <label>Nom</label>
+            <input class="text-control" type="text" id="lastName" name="last" />
+          </div>
           <div class="formData">
-						<label>Email</label>
-						<input class="text-control"
-                   type="email"
-                   id="mail"
-                   name="email" />
-					</div>
+            <label>Email</label>
+            <input class="text-control" type="email" id="mail" name="email" />
+          </div>
           <div class="formData">
-						<label>Votre message</label>
-						<input class="text-control"
-                   type="text"
-                   id="comment"
-                   name="cmt" />
-					</div>
+            <label>Votre message</label>
+            <input class="text-control" type="text" id="comment" name="cmt" />
+          </div>
           <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
+        </form>
+      </div>
+    </div>
     <script src="scripts/factories/media.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>

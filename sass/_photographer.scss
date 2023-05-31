@@ -86,12 +86,10 @@
     padding-top: 10px;
 }
 
-#heart{
-    visibility: hidden;
-}
+
 .favorite{
     cursor: pointer;
-    width: 70px;
+    width: 75px;
     color: $colorLoacation;
     font-size: 1.17rem;
     font-weight: 500;
@@ -99,6 +97,7 @@
     justify-content: space-between;
     background-color: transparent;
     border: none;
+    margin-left: 20px;
 }
 .liked{
     border: none;
@@ -107,11 +106,13 @@
     pointer-events: none;
 }
 .fa-solid {
-    padding-left: -20px;
-    padding-right: -30px;
+    
+    padding-right: 15px;
+    visibility: hidden;
+    
 }
 .fa-regular{
-    padding-left: 25px;
+    padding-left: 15px;
 
 
 }
