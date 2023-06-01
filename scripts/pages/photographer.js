@@ -78,10 +78,10 @@ function getCardBloc(photographer) {
   });
   //console.log(totalLikeCount);
   const blocPhotographer = `
-            <div class="pricePhotographer"> ${photographer.price} €/ jour</div>
             <div id ="likesTotal" class="totalLikes"> ${totalLikeCount}    
             </div>
             <i class="fa-sharp fa-solid fa-heart"></i>
+            <div class="pricePhotographer"> ${photographer.price} €/ jour</div>
           `;
   return blocPhotographer;
 }
