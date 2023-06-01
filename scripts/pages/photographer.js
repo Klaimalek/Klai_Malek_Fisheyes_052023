@@ -1,21 +1,15 @@
-( async function main() {
- await setDataProfil();
+(async function main() {
+  await setDataProfil();
   manageLikes();
+  displayDropdownFilter();
+  handleSortMedia();
 })();
-
-//const galleryMedia = document.querySelector('#profil__media');
-//const blocSummery = document.querySelector('#summery');
-//récupérer l'ID du photographe pour charger les données des photographers
-
+var media = null;
+var totalLikeCount = 0;
 function urlGetParams(url) {
   let resultat = url.search;
   return resultat.substring(4);
 }
-//const idPhotoghrapher = urlGetParams(document.location);
-//console.log(idPhotoghrapher);
-
-//const informationPhotographer = document.querySelectorAll('photograph-header');
-
 //récupération des données
 async function setDataProfil() {
   const idPhotoghrapher = urlGetParams(document.location);
@@ -24,18 +18,13 @@ async function setDataProfil() {
     return 'error';
   }
   let data = await response.json();
-
   let photographer = data.photographers.find(
     (element) => element.id == idPhotoghrapher
   );
-  let media = data.media.filter((m) => m.photographerId == idPhotoghrapher);
 
+  media = data.media.filter((m) => m.photographerId == idPhotoghrapher);
   setDataElement(photographer, media);
-
-  //console.log(media);
 }
-//setDataProfil();
-
 // display les données poor le photographer et media
 function setDataElement(photographer, media) {
   setProfilPhotgrapher(photographer);
@@ -83,52 +72,121 @@ function summeryFactory(photographer) {
 
 function getCardBloc(photographer) {
   const totalLike = document.querySelectorAll('.favorite');
-  let totalLikeCount = 0;
-  //console.log(totalLike);
+  totalLikeCount = 0;
   totalLike.forEach((media) => {
     totalLikeCount += Number(media.textContent);
   });
   //console.log(totalLikeCount);
   const blocPhotographer = `
             <div class="pricePhotographer"> ${photographer.price} €/ jour</div>
-            <div class="totalLikes"> ${totalLikeCount} 
-            <i class="fa-sharp fa-solid fa-heart"></i>
+            <div id ="likesTotal" class="totalLikes"> ${totalLikeCount}    
             </div>
-            
+            <i class="fa-sharp fa-solid fa-heart"></i>
           `;
-
   return blocPhotographer;
 }
-
 function manageLikes() {
-  const btnLikes = document.getElementsByClassName("favorite");
-  console.log(btnLikes);
-  for (let btnLike of btnLikes)
-  {
-    btnLike.addEventListener("click",incrementLike)
+  const btnLikes = document.getElementsByClassName('favorite');
+  for (let btnLike of btnLikes) {
+    btnLike.addEventListener('click', incrementLike);
   }
-  
 }
- function incrementLike(event) {
+function incrementLike(event) {
   let parentElement = event.target.parentNode;
   let likeElement = parentElement.firstElementChild;
   let likeNumber = parseInt(likeElement.textContent);
   let HeartEmpty = likeElement.nextElementSibling;
   let HeartNotEmpty = HeartEmpty.nextElementSibling;
-  
+  let likes = document.getElementById('likesTotal');
+  console.log(likes);
   if (parentElement.classList.contains('liked')) {
     likeNumber -= 1;
     likeElement.innerText = likeNumber;
-    console.log(likeNumber -= 1);
-  }
-   else {
+    HeartEmpty.style.display = 'block';
+    HeartNotEmpty.style.display = 'none';
+    totalLikeCount -= 1;
+  } else {
     likeNumber += 1;
     likeElement.innerText = likeNumber;
+    HeartEmpty.style.display = 'none';
+    HeartNotEmpty.style.display = 'block';
+    totalLikeCount += 1;
+    likes.innerHTML = totalLikeCount;
+    //likes = "";
+
+    console.log(totalLikeCount);
   }
   parentElement.classList.toggle('liked');
-  
 }
 
+// récupération de nobre total par id et ajouter +1
 
-  // récupération de nobre total par id et ajouter +1
- 
+//------------------selection des options pour faire le tri ---------------------------
+function displayDropdownFilter() {
+  //récupérer les éléments de la liste déroulante
+  const elementsDropdown = document.querySelectorAll('.dropdown');
+  const chevron = document.getElementsByClassName('dropdown__chevron')[0];
+
+  window.addEventListener('click', () => {
+    elementsDropdown.forEach((elt) => {
+      elt.classList.remove('active');
+      chevron.classList.add('.active');
+    });
+  });
+
+  elementsDropdown.forEach((elt) => {
+    const btnValue = elt.querySelector('.dropdown-button');
+    // dropdownInput  c'est la div qui englode les options
+    const dropdownInput = elt.querySelector('.dropdown-input');
+    // dropdownPanelOptions c'est le li de la liste
+    const dropdownPanelOptions = elt.querySelectorAll('.dropdown-round ul li');
+    dropdownInput.addEventListener('click', (event) => {
+      event.stopPropagation();
+      elt.classList.toggle('active');
+    });
+    dropdownPanelOptions.forEach((dropdownPanelOptionItem) => {
+      dropdownPanelOptionItem.addEventListener('click', () => {
+        dropdownInput.querySelector('input').value =
+          dropdownPanelOptionItem.innerHTML;
+        btnValue.value = dropdownPanelOptionItem.getAttribute('data-value');
+      });
+    });
+  });
+}
+//------------------------------- trier-------------------------------------------
+function handleSortMedia() {
+  const sortPopularity = document.getElementById('popular');
+  const sortDate = document.getElementById('date');
+  const sortTitle = document.getElementById('title');
+
+  sortPopularity.addEventListener('click', (e) => {
+    functionSort(e.target);
+  });
+
+  sortDate.addEventListener('click', (e) => {
+    functionSort(e.target);
+  });
+  sortTitle.addEventListener('click', (e) => {
+    functionSort(e.target);
+  });
+}
+function functionSort(data) {
+  totalLikes = 0;
+  document.getElementsByClassName('totalLikes').textContent;
+  let resultSort = [];
+  //console.log(data.id);
+  if (data.id == 'title') {
+    let resultSort = media.sort((a, b) => a.title.localeCompare(b.title));
+    //console.log(resultSort);
+  } else if (data.id == 'date') {
+    let resultSort = media.sort((a, b) => new Date(b.date) - new Date(a.date));
+    //console.log(resultSort);
+  } else {
+    resultSort = media.sort((a, b) => b.likes - a.likes);
+    //console.log(resultSort);
+  }
+  const galleryConteneur = document.getElementById('profil__media');
+  galleryConteneur.innerHTML = ''; // vider l'ancien conteneur pour afficher la nouvelle liste de media
+
+  setMedia(media);
+}

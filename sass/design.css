@@ -149,9 +149,9 @@ body {
   pointer-events: none;
 }
 
-.fa-solid {
+#heart {
   padding-right: 15px;
-  visibility: hidden;
+  display: none;
 }
 
 .fa-regular {
@@ -271,18 +271,8 @@ form input {
   display: none;
 }
 
-/*.px-app,
-.px-app *,
-.px-app *::before,
-.px-app *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: 0;
-}
-*/
 .section-tri {
-  margin: 60px;
+  margin: 90px;
 }
 
 .dropdown {
@@ -291,36 +281,19 @@ form input {
   width: 290px;
   height: 55px;
   z-index: 5;
+  border-radius: 5px;
   margin-left: 1rem;
-  margin-top: 20px;
-}
-@media screen and (max-width: 490px) {
-  .dropdown {
-    display: none;
-  }
-}
-@media screen and (max-width: 860px) {
-  .dropdown {
-    width: 290px;
-    height: 30px;
-  }
 }
 
 .dropdown-title {
-  width: 200px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-@media screen and (max-width: 860px) {
-  .dropdown-title {
-    font-size: medium;
-  }
+  font-size: 20px;
+  width: 200px;
 }
 
 .dropdown-input {
-  width: 100%;
-  height: 100%;
   border: 1px solid;
   border-color: #901C1C;
   border-radius: 5px;
