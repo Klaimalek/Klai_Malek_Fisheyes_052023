@@ -6,6 +6,7 @@
 })();
 var media = null;
 var totalLikeCount = 0;
+let listMediaId = []
 function urlGetParams(url) {
   let resultat = url.search;
   return resultat.substring(4);
@@ -54,6 +55,8 @@ function setMedia(media) {
     let article = media.getCardMedia();
     galleryMedia.innerHTML += article;
   });
+   let listMedia = galleryMedia.childNodes;
+   console.log(listMedia);
 }
 
 //mettre les données dans le bloc rouge
@@ -105,6 +108,7 @@ function incrementLike(event) {
     HeartEmpty.style.display = 'block';
     HeartNotEmpty.style.display = 'none';
     totalLikeCount -= 1;
+    likes.innerHTML = totalLikeCount;
   } else {
     likeNumber += 1;
     likeElement.innerText = likeNumber;
@@ -112,9 +116,6 @@ function incrementLike(event) {
     HeartNotEmpty.style.display = 'block';
     totalLikeCount += 1;
     likes.innerHTML = totalLikeCount;
-    //likes = "";
-
-    console.log(totalLikeCount);
   }
   parentElement.classList.toggle('liked');
 }
@@ -183,10 +184,12 @@ function functionSort(data) {
     //console.log(resultSort);
   } else {
     resultSort = media.sort((a, b) => b.likes - a.likes);
-    //console.log(resultSort);
+    console.log(resultSort);
   }
   const galleryConteneur = document.getElementById('profil__media');
   galleryConteneur.innerHTML = ''; // vider l'ancien conteneur pour afficher la nouvelle liste de media
 
   setMedia(media);
+  
 }
+

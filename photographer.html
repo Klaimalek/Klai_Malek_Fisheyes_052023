@@ -54,26 +54,63 @@
           />
         </div>
       </section>
- 
-      <section class = "section-tri">
+
+      <section class="section-tri">
         <div class="dropdown">
-            <h2 class="dropdown-title">Trier Par </h2>
-            <input class="dropdown-button" type="hidden" role="button" aria-label="Trier par" aria-haspopup="lisbox" aria-expanded="true" tabindex="0">
-          <div class="dropdown-input" >
-            <input type="text" readonly value="Popularité">
+          <label for="filtre" class="dropdown-title">Trier Par </label>
+          <input
+            class="dropdown-button"
+            type="hidden"
+            role="button"
+            aria-label="Trier par"
+            aria-haspopup="lisbox"
+            aria-expanded="true"
+            tabindex="0"
+          />
+          <div class="dropdown-input">
+            <input
+              type="text"
+              aria-label="famous"
+              role="button"
+              readonly
+              value="Popularité"
+            />
             <em class="dropdown__chevron fas fa-chevron-down"></em>
           </div>
           <div class="dropdown-round">
             <ul>
-              <li id="popular" data-value="value-1" role="listbox" aria-selected="" aria-label="selectionner par Popularité">Popularité</li>
-              <li id="date" data-value="value-2" role="listbox" aria-selected="" aria-label="selectionner par Date">Date</li>
-              <li id="title" data-value="value-3" role="listbox" aria-selected="" aria-label="selectionner par Titre">Titre</li>
+              <li
+                id="popular"
+                data-value="value-1"
+                role="listbox"
+                aria-selected=""
+                aria-label="selectionner par Popularité"
+              >
+                Popularité
+              </li>
+              <li
+                id="date"
+                data-value="value-2"
+                role="listbox"
+                aria-selected=""
+                aria-label="selectionner par Date"
+              >
+                Date
+              </li>
+              <li
+                id="title"
+                data-value="value-3"
+                role="listbox"
+                aria-selected=""
+                aria-label="selectionner par Titre"
+              >
+                Titre
+              </li>
             </ul>
           </div>
         </div>
       </section>
-      <section id="profil__media" class="section_media">
-      </section>
+      <section id="profil__media" class="section_media"></section>
       <div id="summery" class="Bloc_red"></div>
     </main>
     <div
@@ -93,35 +130,74 @@
         </header>
         <form name="reserve" action="photographer.html" method="get">
           <div class="formData">
-            <label>Prénom</label>
+            <label for="firstname" id="label-firstname">Prénom</label>
             <input
               class="text-control"
               type="text"
               id="first"
               name="firstname"
+              aria-label="firstname"
             />
           </div>
           <p class="error" id="errorLastname">
             Veuillez entrer 4 caractères ou plus pour le champ du prénom.
           </p>
           <div class="formData">
-            <label>Nom</label>
-            <input class="text-control" type="text" id="lastName" name="last" />
+            <label for="last" id="label-name">Nom</label>
+            <input
+              class="text-control"
+              type="text"
+              id="lastName"
+              name="last"
+              aria-label="lastName"
+            />
           </div>
           <div class="formData">
-            <label>Email</label>
+            <label for="mail" id="label-mail">Email</label>
             <input class="text-control" type="email" id="mail" name="email" />
           </div>
           <div class="formData">
-            <label>Votre message</label>
-            <input class="text-control" type="text" id="comment" name="cmt" />
+            <label for="cmt" id="label-commit">Votre message</label>
+            <input
+              class="text-control"
+              type="text"
+              id="comment"
+              name="cmt"
+              aria-label="comment"
+            />
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
       </div>
     </div>
+    <aside
+      class="section-lightBox"
+      id="lightBox"
+      role="dialog"
+      aria-label="image closeup view"
+    >
+      <div class="lightBox-content">
+        
+      </div>
+      <div class="lightbox__commandes">
+        <button id="lightbox__close" aria-label="Fermer Le lightbox">
+          <em class="fas fa-times close-lightbox-media lightbox__icon"></em>
+        </button>
+        <a href="#" aria-label="Previous image"  class="link-media" id ="link__previous__media">
+          <span class="arrow__left" aria-label="media precedent">
+            <em class="fas fa-chevron-left lightbox__iconLeft"></em>
+          </span>
+        </a>
+        <a href="#" aria-label="Next image"  class="link media" id ="link__next__media">
+          <span class="arrow__right" aria-label="media suivant">
+            <em class="fas fa-chevron-right lightbox__iconRight"></em>
+          </span>
+        </a>
+      </div>
+    </aside>
     <script src="scripts/factories/media.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/lightbox.js"></script>
   </body>
 </html>

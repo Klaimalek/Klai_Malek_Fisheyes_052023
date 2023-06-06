@@ -13,7 +13,7 @@ function mediaFactory(data) {
 
     const articleMedia = `
                 <article class="media" >
-                  <a href="#" class="media__link" >
+                  <a href="#" class="media__link" onclick ="openLightbox('${data.id}')" >
                     ${element}
                   </a>
                   <div class="infoMedia">
