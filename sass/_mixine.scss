@@ -25,3 +25,10 @@
     width: 20.9375rem;
     border-radius: 0.5em;
 }
+@mixin arrow {
+    width: 30px;
+    height:48px ;
+    position: fixed;
+    cursor: pointer;
+    top: 50%;
+}
