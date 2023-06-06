@@ -406,27 +406,40 @@ form input {
 }
 
 .lightBox-content {
+  margin-right: 50px;
+  margin-left: 50px;
   display: flex;
-  padding-top: 10%;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  border: 2px solid;
 }
 
 .lightBox-content img {
-  height: 25rem;
-  margin: 0 auto;
-  -o-object-fit: fill;
-     object-fit: fill;
-  width: 25rem;
+  max-height: auto;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 2px solid;
+}
+
+.lightBox-content video {
+  height: auto;
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 #lightbox__close {
-  position: absolute;
+  position: fixed;
   background: url(../assets/icons/close_lightbox.svg);
   height: 42px;
   width: 42px;
-  top: 22%;
-  right: 30%;
+  top: 10%;
+  right: 34%;
   background-color: transparent;
   border: none;
+  font-size: 18px;
 }
 
 .arrow__left {
