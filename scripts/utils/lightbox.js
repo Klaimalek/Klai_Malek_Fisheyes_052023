@@ -1,18 +1,17 @@
-
+var mediaediaId;
 const lightBoxBlock = document.getElementById('lightBox');
 const lightboxContent = document.querySelector('.lightBox-content');
 const btnClose = document.getElementById('lightbox__close');
 const nextMedia = document.getElementById('link__next__media');
 const previousMedia = document.getElementById('link__previous__media');
-const linkMedia = document.getElementsByClassName('media__link');
+const linkMedia = Array.from( document.querySelectorAll('a'));
 console.log( linkMedia);
-const sectionMedia = document.getElementById('profil__media').childNodes;
+
 //------------------openLightbox---------------------------------
 
 function openLightbox(id) {
-  displayMediaLightbox(id)
+  displayMediaLightbox(id);
   lightBoxBlock.style.display = 'block';
-
 }
 //--------------------closeLightbox---------------------------------
 btnClose.addEventListener('click', closeLightBox);
@@ -34,6 +33,6 @@ function displayMediaLightbox(id) {
   mediaClone.focus();
 }
 
+//------------------slidingmedia -----------------------------------------
 
-  
 

@@ -10,7 +10,6 @@
     align-items: center;
     justify-content: center;
     display: none;
-    
     background-color: white;
 }
 .lightBox-content {
@@ -20,26 +19,23 @@
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-     border: 2px solid;
 }
-.lightBox-content img{
-    max-height: auto;
-    max-width: 100%;
-    object-fit: cover;
-    border: 2px solid;
-}
+.lightBox-content img,
 .lightBox-content video{
-    height: auto;
-    max-width: 100%;
-    object-fit: cover;
+    width: 80%;
+    height: 100%;
+    object-fit: contain;
+    margin-top: 30px;
 }
+
+
 #lightbox__close{
     position: fixed;
     background: url(../assets/icons/close_lightbox.svg);
     height: 42px;
     width: 42px;
     top: 10%;
-    right: 34%;
+    right: 8%;
     background-color: transparent;
     border: none;
     font-size: 18px;
