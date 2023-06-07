@@ -1,6 +1,6 @@
 function mediaFactory(data) {
   let type = data.video ? 'video' : 'image';
-
+  let indexNumber = 0;
   function getCardMedia() {
     let element;
     if (type == 'image') {
@@ -13,8 +13,8 @@ function mediaFactory(data) {
 
     const articleMedia = `
                 <article class="media" >
-                  <a href="#" class="media__link" onclick ="openLightbox('${data.id}')" >
-                    ${element}
+                  <a tabindex="${indexNumber += 1}" href = "#" class="media__link" onclick="openLightbox('${data.id}')" >
+                    ${element} 
                   </a>
                   <div class="infoMedia">
                     <h3 class= "titleMedia">${data.title}</h3>
