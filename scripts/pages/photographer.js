@@ -3,6 +3,7 @@
   manageLikes();
   displayDropdownFilter();
   handleSortMedia();
+  initLightbox();
 })();
 var media = null;
 var totalLikeCount = 0;
@@ -197,37 +198,58 @@ function functionSort(data) {
   setMedia(media);
 }
 //---------------------------------lightbox--------------------------------------
-const lightBoxBlock = document.getElementById('lightBox');
-const lightboxContent = document.querySelector('.lightBox-content');
-const btnClose = document.getElementById('lightbox__close');
-const nextMedia = document.getElementById('link__next__media');
-const previousMedia = document.getElementById('link__previous__media');
-const linkMedia = Array.from(document.querySelectorAll('a'));
+//const lightBoxBlock = document.getElementById('lightBox');
+//const lightboxContent = document.querySelector('.lightBox-content');
+//const btnClose = document.getElementById('lightbox__close');
+
+//const linkMedia = Array.from(document.querySelectorAll('a'));
 
 //------------------openLightbox---------------------------------
 
-function openLightbox(id) {
+function initLightbox() {
+  const linkMedia = Array.from(document.getElementsByClassName('media__link'));
+  const btnClose = document.getElementById('lightbox__close');
+  const nextMedia = document.getElementById('link__next__media');
+  const previousMedia = document.getElementById('link__previous__media');
+  btnClose.addEventListener('click', closeLightBox);
+  linkMedia.forEach(function (media) {
+    media.addEventListener('click', openLightbox);
+  });
+  window.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      closeLightBox(e);
+    }
+  });
+  nextMedia.addEventListener('click', function(){
+    slidingLightBox(1);
+  });
+  previousMedia.addEventListener('click', function(){
+    slidingLightBox(-1);
+  });
+}
+
+function openLightbox(event) {
+  const id = event.target.getAttribute('data-id');
+  const lightBoxBlock = document.getElementById('lightBox');
+  const btnClose = document.getElementById('lightbox__close');
   displayMediaLightbox(id);
   lightBoxBlock.style.display = 'block';
   btnClose.focus();
 }
 //--------------------closeLightbox---------------------------------
-btnClose.addEventListener('click', closeLightBox);
+
 function closeLightBox() {
+  const lightBoxBlock = document.getElementById('lightBox');
   lightBoxBlock.style.display = 'none';
   lightBoxBlock.focus();
 }
 // -------- fermer la modale avec le clavier ------
-window.addEventListener('keydown', function(e){
-  if(e.key === 'Escape' || e.key === 'Esc'){
-    closeLightBox(e);
-  }
 
-})
 // ----------placer l'iamge dans le conteneur lightbox-------------------
 function displayMediaLightbox(id) {
   const mediaModel = document.querySelector(`[data-id='${id}']`);
   const mediaClone = mediaModel.cloneNode();
+  const lightboxContent = document.querySelector('.lightBox-content');
   if (mediaModel.nodeName == 'VIDEO') {
     mediaClone.setAttribute('controls', true);
   }
@@ -241,6 +263,8 @@ function displayMediaLightbox(id) {
 //------------------sliding media -----------------------------------------
 
 function slidingLightBox(index) {
+  const lightboxContent = document.querySelector('.lightBox-content');
+  console.log(lightboxContent.firstChild);
   if (listMediaId.length > 0) {
     let indexListMedia = listMediaId.findIndex(
       (id) => id == lightboxContent.firstChild.dataset.id
@@ -258,10 +282,6 @@ function slidingLightBox(index) {
 }
 // ------------------ajout les events aux fleches de lightbox-----------
 
-nextMedia.addEventListener('click', slidingLightBox(1));
-previousMedia.addEventListener('click', slidingLightBox(-1));
-
 //---------------------------------------------------------------------------------
 
 // l'événement pour la navigation lightbox avec les flèches du clavier
-
