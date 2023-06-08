@@ -6,7 +6,7 @@
 })();
 var media = null;
 var totalLikeCount = 0;
-let listMediaId = []
+var listMediaId = [];
 function urlGetParams(url) {
   let resultat = url.search;
   return resultat.substring(4);
@@ -24,6 +24,11 @@ async function setDataProfil() {
   );
 
   media = data.media.filter((m) => m.photographerId == idPhotoghrapher);
+  // récupérer les id des medias et mettre dans un tableau
+  media.forEach((element) => {
+    listMediaId.push(element.id);
+  });
+  console.log(listMediaId);
   setDataElement(photographer, media);
 }
 // display les données poor le photographer et media
@@ -55,8 +60,8 @@ function setMedia(media) {
     let article = media.getCardMedia();
     galleryMedia.innerHTML += article;
   });
-   let listMedia = galleryMedia.childNodes;
-   console.log(listMedia);
+  let listMedia = galleryMedia.childNodes;
+  console.log(listMedia);
 }
 
 //mettre les données dans le bloc rouge
@@ -190,6 +195,73 @@ function functionSort(data) {
   galleryConteneur.innerHTML = ''; // vider l'ancien conteneur pour afficher la nouvelle liste de media
 
   setMedia(media);
-  
 }
 //---------------------------------lightbox--------------------------------------
+const lightBoxBlock = document.getElementById('lightBox');
+const lightboxContent = document.querySelector('.lightBox-content');
+const btnClose = document.getElementById('lightbox__close');
+const nextMedia = document.getElementById('link__next__media');
+const previousMedia = document.getElementById('link__previous__media');
+const linkMedia = Array.from(document.querySelectorAll('a'));
+
+//------------------openLightbox---------------------------------
+
+function openLightbox(id) {
+  displayMediaLightbox(id);
+  lightBoxBlock.style.display = 'block';
+  btnClose.focus();
+}
+//--------------------closeLightbox---------------------------------
+btnClose.addEventListener('click', closeLightBox);
+function closeLightBox() {
+  lightBoxBlock.style.display = 'none';
+  lightBoxBlock.focus();
+}
+// -------- fermer la modale avec le clavier ------
+window.addEventListener('keydown', function(e){
+  if(e.key === 'Escape' || e.key === 'Esc'){
+    closeLightBox(e);
+  }
+
+})
+// ----------placer l'iamge dans le conteneur lightbox-------------------
+function displayMediaLightbox(id) {
+  const mediaModel = document.querySelector(`[data-id='${id}']`);
+  const mediaClone = mediaModel.cloneNode();
+  if (mediaModel.nodeName == 'VIDEO') {
+    mediaClone.setAttribute('controls', true);
+  }
+  lightboxContent.innerHTML = '';
+  mediaClone.setAttribute('tabindex', '0');
+
+  lightboxContent.appendChild(mediaClone);
+  mediaClone.focus();
+}
+
+//------------------sliding media -----------------------------------------
+
+function slidingLightBox(index) {
+  if (listMediaId.length > 0) {
+    let indexListMedia = listMediaId.findIndex(
+      (id) => id == lightboxContent.firstChild.dataset.id
+    );
+
+    if (indexListMedia + index < 0) {
+      indexListMedia = listMediaId.length - 1;
+    } else if (indexListMedia + index == listMediaId.length) {
+      indexListMedia = 0;
+    } else {
+      indexListMedia += index;
+    }
+    displayMediaLightbox(listMediaId[indexListMedia]);
+  }
+}
+// ------------------ajout les events aux fleches de lightbox-----------
+
+nextMedia.addEventListener('click', slidingLightBox(1));
+previousMedia.addEventListener('click', slidingLightBox(-1));
+
+//---------------------------------------------------------------------------------
+
+// l'événement pour la navigation lightbox avec les flèches du clavier
+

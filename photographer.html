@@ -113,19 +113,22 @@
       <section id="profil__media" class="section_media"></section>
       <div id="summery" class="Bloc_red"></div>
     </main>
-    <div
+    <aside
       id="contact_modal"
       aria-hidden="true"
       role="dialog"
       aria-describedby="modalContact"
+      aria-labelledby="title-modale"
     >
       <div class="modal">
         <header>
-          <h2>Contactez-moi</h2>
+          <h2 id="title-modale">Contactez-moi</h2>
           <img
             src="assets/icons/close.svg"
-            alt="“Contact Me”"
+            alt="Close Contact form "
             onclick="closeModal()"
+            role="button"
+            aria-label="Ferme la modale"
           />
         </header>
         <form name="reserve" action="photographer.html" method="get">
@@ -158,18 +161,21 @@
           </div>
           <div class="formData">
             <label for="cmt" id="label-commit">Votre message</label>
-            <input
+            <textarea
               class="text-control"
               type="text"
-              id="comment"
+              id="commit"
               name="cmt"
-              aria-label="comment"
-            />
+              aria-label="votre message"
+              rows="5"
+              cols="45"
+            >
+            </textarea>
           </div>
           <button class="contact_button">Envoyer</button>
         </form>
       </div>
-    </div>
+    </aside>
     <aside
       class="section-lightBox"
       id="lightBox"
@@ -178,22 +184,30 @@
     >
       <div class="lightBox-content"></div>
       <div class="lightbox__commandes">
-        <button id="lightbox__close" aria-label="Fermer Le lightbox"></button>
+        <button
+          id="lightbox__close"
+          type="button"
+          aria-label="Fermer"
+          title="fermer cette fenetre modale"
+          data-dismiss="dialog"
+        ></button>
         <a
           href="#"
           aria-label="Previous image"
           class="link-media"
           id="link__previous__media"
+          onclick="slidingLightBox(1)"
         >
-          <span class="arrow__left" aria-label="media precedent"> </span>
+          <span class="arrow__left" aria-label="media suivant"> </span>
         </a>
         <a
           href="#"
           aria-label="Next image"
           class="link media"
           id="link__next__media"
+          onclick="slidingLightBox(-1)"
         >
-          <span class="arrow__right" aria-label="media suivant"> </span>
+          <span class="arrow__right" aria-label="media precedent"> </span>
         </a>
       </div>
     </aside>

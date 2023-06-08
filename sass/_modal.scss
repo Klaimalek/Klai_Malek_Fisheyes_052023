@@ -2,7 +2,7 @@
 .modal {
     border-radius: 5px;
     background-color: $backgroundBlock;
-    width: 50%;
+    width: 30%;
     height: 800px;
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@
 }
 
 .modal header h2 {
-    font-size: 40px;
+    font-size: 33px;
     font-weight: normal;
     width: 70%;
 }
@@ -44,7 +44,7 @@ form {
 
 form label {
     color: #312E2E;
-    font-size: 36px;
+    font-size: 28px;
 }
 
 form div {

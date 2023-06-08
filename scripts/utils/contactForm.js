@@ -17,6 +17,7 @@ function launchModal() {
 
 function closeModal() {
     modal.style.display = "none";
+    modal.focus();
 }
 
 // ------------ element pour l'envoi du formulaire ------------------------
@@ -99,3 +100,11 @@ const validation = function () {
     e.preventDefault();
     validation();
   });
+  //------------- fermer la modale par le clavier -----------------
+
+  window.addEventListener('keydown', function(event){
+    if(e.key === 'Escape' || e.key === 'Esc'){
+      closeModal(event);
+    }
+  
+  })
