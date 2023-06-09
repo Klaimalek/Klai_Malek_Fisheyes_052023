@@ -8,12 +8,12 @@ function mediaFactory(data) {
     } else if (type == 'video') {
       console.log(data.video);
       console.log(data.photographerId);
-      element = `<video class="video_Media" preload="metadata" data-id='${data.id}' controls>
-        <source src="/assets/media/${data.photographerId}/${data.video}" type="video/mp4">
+      element = `<video class="video_Media" preload="metadata" data-id='${data.id}'>
+        <source src="/assets/media/${data.photographerId}/${data.video}#t=0.1" type="video/mp4">
         </source>
         </video>`;
     }
-   
+   //#t=0.1 pour que le video s'affiche sur saffari
     const articleMedia = `
                 <article class="media" >
                   <a href="#" class="media__link" data-id=' ${data.id}' >

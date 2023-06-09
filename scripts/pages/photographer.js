@@ -220,10 +220,10 @@ function initLightbox() {
       closeLightBox(e);
     }
   });
-  nextMedia.addEventListener('click', function(){
+  nextMedia.addEventListener('click', function () {
     slidingLightBox(1);
   });
-  previousMedia.addEventListener('click', function(){
+  previousMedia.addEventListener('click', function () {
     slidingLightBox(-1);
   });
 }
@@ -250,8 +250,10 @@ function displayMediaLightbox(id) {
   const mediaModel = document.querySelector(`[data-id='${id}']`);
   const mediaClone = mediaModel.cloneNode();
   const lightboxContent = document.querySelector('.lightBox-content');
+  console.log(mediaModel.firstElementChild);
   if (mediaModel.nodeName == 'VIDEO') {
-    mediaClone.setAttribute('controls', true);
+    mediaClone.setAttribute('controls', "");
+  
   }
   lightboxContent.innerHTML = '';
   mediaClone.setAttribute('tabindex', '0');
