@@ -249,29 +249,38 @@ function closeLightBox() {
 function displayMediaLightbox(id) {
   const mediaModel = document.querySelector(`[data-id='${id}']`);
   const mediaClone = mediaModel.cloneNode();
+  console.log(mediaModel);
   const lightboxContent = document.querySelector('.lightBox-content');
-  console.log(mediaModel.firstElementChild);
+  const titleMedia = document.getElementsByClassName('title-lightbox');
   if (mediaModel.nodeName == 'VIDEO') {
-    mediaClone.setAttribute('controls', "");
-  
+    titleMedia[0].innerText = mediaModel.title;
+    mediaClone.setAttribute('controls', true);
+    // Création source
+    const videoSource = document.createElement('source');
+    if (mediaModel.firstElementChild != null) {
+      videoSource.src = mediaModel.firstElementChild.src;
+      videoSource.type = mediaModel.firstElementChild.type;
+    }
+    //mediaClone.src = mediaModel.outerHTML;
+    mediaClone.appendChild(videoSource);
   }
   lightboxContent.innerHTML = '';
   mediaClone.setAttribute('tabindex', '0');
-
   lightboxContent.appendChild(mediaClone);
-  mediaClone.focus();
+  if (mediaModel.nodeName != 'VIDEO') {
+    titleMedia[0].innerText = mediaModel.alt;
+  }
 }
 
 //------------------sliding media -----------------------------------------
 
 function slidingLightBox(index) {
   const lightboxContent = document.querySelector('.lightBox-content');
-  console.log(lightboxContent.firstChild);
   if (listMediaId.length > 0) {
     let indexListMedia = listMediaId.findIndex(
       (id) => id == lightboxContent.firstChild.dataset.id
     );
-
+    console.log(indexListMedia);
     if (indexListMedia + index < 0) {
       indexListMedia = listMediaId.length - 1;
     } else if (indexListMedia + index == listMediaId.length) {
@@ -279,11 +288,7 @@ function slidingLightBox(index) {
     } else {
       indexListMedia += index;
     }
+
     displayMediaLightbox(listMediaId[indexListMedia]);
   }
 }
-// ------------------ajout les events aux fleches de lightbox-----------
-
-//---------------------------------------------------------------------------------
-
-// l'événement pour la navigation lightbox avec les flèches du clavier

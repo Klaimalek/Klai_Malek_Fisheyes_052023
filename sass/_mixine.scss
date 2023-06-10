@@ -32,3 +32,9 @@
     cursor: pointer;
     top: 50%;
 }
+@mixin styleMediaLightbox{
+    height: 85%;
+    width: 70%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
