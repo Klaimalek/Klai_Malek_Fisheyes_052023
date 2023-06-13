@@ -67,14 +67,17 @@
             aria-haspopup="lisbox"
             aria-expanded="true"
             tabindex="0"
+            id="filtre"
           />
           <div class="dropdown-input">
+            <label for="popularr" hidden="true" >Popularité</label>
             <input
               type="text"
               aria-label="famous"
               role="button"
               readonly
               value="Popularité"
+              id="popularr"
             />
             <em class="dropdown__chevron fas fa-chevron-down"></em>
           </div>
@@ -120,48 +123,59 @@
       role="dialog"
       aria-describedby="modalContact"
       aria-labelledby="title-modale"
+      aria-label="Contact me"
     >
-      <div class="modal">
+      <div class="modal" tabindex="-1">
         <header>
-          <h2 id="title-modale">Contactez-moi</h2>
-          <img
-            src="assets/icons/close.svg"
-            alt="Close Contact form "
-            onclick="closeModal()"
-            role="button"
-            aria-label="Ferme la modale"
-          />
+          <div class="header-title-icon">
+            <h2 id="title-modale">Contactez-moi</h2>
+            <img
+              src="assets/icons/close.svg"
+              alt="Close Contact form "
+              role="button"
+              aria-label="Ferme la modale"
+              id="btn-modal-close"
+            />
+          </div>
+          <div id ="name-photogrpager-modale"></div>
         </header>
         <form name="reserve" action="photographer.html" method="get">
           <div class="formData">
-            <label for="firstname" id="label-firstname">Prénom</label>
+            <label for="first" id="label-firstname">Prénom</label>
             <input
               class="text-control"
               type="text"
               id="first"
               name="firstname"
               aria-label="firstname"
+            
             />
           </div>
-          <p class="error" id="errorLastname">
-            Veuillez entrer 4 caractères ou plus pour le champ du prénom.
+          <p class="error" id="errorFirstname">
+          "Veuillez entrer votre prénom"
           </p>
           <div class="formData">
-            <label for="last" id="label-name">Nom</label>
+            <label for="lastName" id="label-name">Nom</label>
             <input
               class="text-control"
               type="text"
               id="lastName"
               name="last"
               aria-label="lastName"
+            
             />
           </div>
+          <p class="error" id="error-lastName">
+            "Veuillez entrer votre nom" </p>
           <div class="formData">
             <label for="mail" id="label-mail">Email</label>
-            <input class="text-control" type="email" id="mail" name="email" />
+            <input class="text-control" type="email" id="mail" name="email" tabindex="3" />
           </div>
+          <p class="error" id="errormail">
+            "Veuillez entrer une addresse email valide"
+            </p>
           <div class="formData">
-            <label for="cmt" id="label-commit">Votre message</label>
+            <label for="commit" id="label-commit">Votre message</label>
             <textarea
               class="text-control"
               type="text"
@@ -173,10 +187,24 @@
             >
             </textarea>
           </div>
-          <button class="contact_button">Envoyer</button>
+          <p class="error" id="errorcommit">
+            "Veuillez entrer au minimum 12 caractères"
+            </p>
+          <button class="contact_button" type="submit" id="btn-contact">Envoyer</button>
         </form>
       </div>
+      <div class="modal-success" id="bground-success">
+        <div class="content" id ="confirm-modal">
+          <span class="close" id ='close-modalsucess'></span>
+          <div class="modal-body" id="modal-body-contact" >
+            <h1 class="message" id="msg">
+              Merci pour votre message 
+            </h1>
+          </div>
+        </div>
+      </div>
     </aside>
+    
     <aside
       class="section-lightBox"
       id="lightBox"
@@ -219,6 +247,5 @@
     <script src="scripts/factories/media.js"></script>
     <script src="/scripts/pages/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
-    <script src="/scripts/utils/lightbox.js"></script>
   </body>
 </html>

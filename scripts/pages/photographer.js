@@ -38,6 +38,7 @@ function setDataElement(photographer, media) {
   setMedia(media);
   setSummeryGphotographer(photographer, media);
 }
+
 //Mettre info dans la presentation du photographe
 function setProfilPhotgrapher(photographer) {
   document.getElementById('namePhotographer').innerText = photographer.name;
@@ -50,6 +51,11 @@ function setProfilPhotgrapher(photographer) {
   document.getElementById(
     'photographerImg'
   ).src = `assets/photographers/${photographer.portrait}`;
+  // dispaly le nom et le prénom de phptpgraphe dans la modale contacte me
+  const namePhptographerModal = document.getElementById('name-photogrpager-modale');
+  namePhptographerModal.innerText=`${photographer.name}`;
+  const modal = document.getElementById('contact_modal');
+  modal.setAttribute('aria-label', "contact me " + `${photographer.name}`);
 }
 
 // display les medias
@@ -198,11 +204,7 @@ function functionSort(data) {
   setMedia(media);
 }
 //---------------------------------lightbox--------------------------------------
-//const lightBoxBlock = document.getElementById('lightBox');
-//const lightboxContent = document.querySelector('.lightBox-content');
-//const btnClose = document.getElementById('lightbox__close');
 
-//const linkMedia = Array.from(document.querySelectorAll('a'));
 
 //------------------openLightbox---------------------------------
 
@@ -226,6 +228,7 @@ function initLightbox() {
   previousMedia.addEventListener('click', function () {
     slidingLightBox(-1);
   });
+  slidingClavier()
 }
 
 function openLightbox(event) {
@@ -243,9 +246,8 @@ function closeLightBox() {
   lightBoxBlock.style.display = 'none';
   lightBoxBlock.focus();
 }
-// -------- fermer la modale avec le clavier ------
 
-// ----------placer l'iamge dans le conteneur lightbox-------------------
+// ----------placer l'image dans le conteneur lightbox-------------------
 function displayMediaLightbox(id) {
   const mediaModel = document.querySelector(`[data-id='${id}']`);
   const mediaClone = mediaModel.cloneNode();
@@ -265,7 +267,7 @@ function displayMediaLightbox(id) {
     mediaClone.appendChild(videoSource);
   }
   lightboxContent.innerHTML = '';
-  mediaClone.setAttribute('tabindex', '0');
+  //mediaClone.setAttribute('tabindex', '0');
   lightboxContent.appendChild(mediaClone);
   if (mediaModel.nodeName != 'VIDEO') {
     titleMedia[0].innerText = mediaModel.alt;
@@ -291,4 +293,25 @@ function slidingLightBox(index) {
 
     displayMediaLightbox(listMediaId[indexListMedia]);
   }
+}
+
+// la navigation lightbox avec les flèches du clavier
+function slidingClavier(){
+document.addEventListener("keydown", (event) =>{
+  const lightBoxBlock = document.getElementById('lightBox');
+  const isLightboxActive = () => lightBoxBlock.style.display !== "none";
+  const key = event.key;
+
+  if (isLightboxActive ) {
+      switch (key) {
+        case "ArrowRight":
+          slidingLightBox(1);
+          break;
+        case "ArrowLeft":
+          slidingLightBox(-1);
+          break;
+        default:
+      }
+    }
+});
 }
